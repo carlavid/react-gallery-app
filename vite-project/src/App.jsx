@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Routes } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
-import Search from './components/Search';
+import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
 import PhotoList from './components/PhotoList';
 import apiKey from './config';
@@ -9,7 +10,7 @@ import apiKey from './config';
 
 const App = () => {
   const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState("cats");
+  const [query, setQuery] = useState("birds");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,13 +37,20 @@ const App = () => {
 
   return (
     <div className="container">
-      <Search changeQuery={handleQueryChange}/>
+      <SearchForm changeQuery={handleQueryChange}/>
       <Nav />
       {
         (loading)
         ? <p>Loading...</p>
         : <PhotoList data={photos} />
       }
+      <Routes>
+        <Route path="/" element={App} />
+        <Route path="cats" element={PhotoList} />
+        <Route path="dogs" element={PhotoList} />
+        <Route path="computers" element={PhotoList} />
+        <Route path="/search/:query" element={PhotoList} />
+      </Routes>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-const Search = props => {
+const SearchForm = props => {
   const searchText = useRef(null);
 
   const handleSubmit = e => {
@@ -32,4 +32,4 @@ const Search = props => {
   );
 };
 
-export default Search;
+export default SearchForm;
