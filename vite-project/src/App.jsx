@@ -46,10 +46,10 @@ const App = () => {
       }
       <Routes>
         <Route path="/" element={App} />
-        <Route path="cats" element={PhotoList} />
-        <Route path="dogs" element={PhotoList} />
-        <Route path="computers" element={PhotoList} />
-        <Route path="/search/:query" element={PhotoList} />
+        <Route path="cats" element={<PhotoList data={photos}/> } />
+        <Route path="dogs" element={<PhotoList data={photos}/>} />
+        <Route path="computers" element={<PhotoList data={photos}/>} />
+        <Route path="/search/:query" element={<PhotoList data={photos}/>} />
       </Routes>
     </div>
   )
