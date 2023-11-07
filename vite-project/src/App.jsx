@@ -10,7 +10,7 @@ import apiKey from './config';
 
 const App = () => {
   const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState("birds");
+  const [query, setQuery] = useState("cats");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,13 +39,13 @@ const App = () => {
     <div className="container">
       <SearchForm changeQuery={handleQueryChange}/>
       <Nav />
-      {
+      {/* {
         (loading)
         ? <p>Loading...</p>
         : <PhotoList data={photos} />
-      }
+      } */}
       <Routes>
-        <Route path="/" element={<Navigate to="/"/>} />
+        <Route path="/" element={<Navigate to="/cats"/>} />
         <Route path="cats" element={<PhotoList data={photos}/> } />
         <Route path="dogs" element={<PhotoList data={photos}/>} />
         <Route path="computers" element={<PhotoList data={photos}/>} />
