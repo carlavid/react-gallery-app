@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const Search = () => {
+const Search = props => {
+  const searchText = useRef(null);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.changeQuery(searchText.current.value);
+    e.currentTarget.reset();
+  }
+
   return (
-    <form className="search-form">
-      <input type="search" name="search" placeholder="Search" required />
+    <form className="search-form" onSubmit={e => handleSubmit(e)}>
+      <input type="search" 
+             ref={searchText}
+             name="search" 
+             placeholder="Search" 
+             required />
       <button type="submit" className="search-button">
         <svg
           fill="#fff"
