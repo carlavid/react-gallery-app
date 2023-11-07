@@ -8,7 +8,7 @@ const SearchForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     props.changeQuery(searchText.current.value);
-    navigate(`/${searchText.current.value}`);
+    navigate(`/search/${searchText.current.value}`);
     e.currentTarget.reset();
   }
 

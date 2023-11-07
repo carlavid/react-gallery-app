@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 import SearchForm from './components/SearchForm';
@@ -45,7 +45,7 @@ const App = () => {
         : <PhotoList data={photos} />
       }
       <Routes>
-        <Route path="/" element={App} />
+        <Route path="/" element={<Navigate to="/"/>} />
         <Route path="cats" element={<PhotoList data={photos}/> } />
         <Route path="dogs" element={<PhotoList data={photos}/>} />
         <Route path="computers" element={<PhotoList data={photos}/>} />
