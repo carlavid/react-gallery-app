@@ -13,44 +13,50 @@ const App = () => {
   const [query, setQuery] = useState("cats");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchData = (queryParam) => {
+    const apiUrl = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${queryParam}&per_page=24&format=json&nojsoncallback=1`;
     setLoading(true);
     let activeFetch = true;
-      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+    
+    axios.get(apiUrl)
       .then(response => {
-        // handle success
         if (activeFetch) {
           setPhotos(response.data.photos.photo);
           setLoading(false);
         }
       })
       .catch(error => {
-        // handle error
         console.log("Error fetching and parsing data", error);
       });
-    return () => {activeFetch = false}
+    return () => {activeFetch = False}
+  }
+
+  useEffect(() => {
+    fetchData(query);
   }, [query]);
 
   const handleQueryChange = searchText => {
     setQuery(searchText);
+    fetchData(query);
   }
 
   return (
     <div className="container">
       <SearchForm changeQuery={handleQueryChange}/>
       <Nav />
-      {/* {
+      {
         (loading)
         ? <p>Loading...</p>
-        : <PhotoList data={photos} />
-      } */}
-      <Routes>
-        <Route path="/" element={<Navigate to="/cats"/>} />
-        <Route path="cats" element={<PhotoList data={photos}/> } />
-        <Route path="dogs" element={<PhotoList data={photos}/>} />
-        <Route path="computers" element={<PhotoList data={photos}/>} />
-        <Route path="/search/:query" element={<PhotoList data={photos}/>} />
-      </Routes>
+        : 
+        <Routes>
+          <Route path="/" element={<Navigate to="/cats"/>} />
+          <Route path="cats" element={<PhotoList data={photos}/> } />
+          <Route path="dogs" element={<PhotoList data={photos}/>} />
+          <Route path="computers" element={<PhotoList data={photos}/>} />
+          <Route path="/search/:query" element={<PhotoList data={photos}/>} />
+        </Routes>
+      }
+      
     </div>
   )
 }
