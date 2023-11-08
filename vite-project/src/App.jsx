@@ -5,6 +5,7 @@ import "./App.css";
 import SearchForm from "./components/SearchForm";
 import Nav from "./components/Nav";
 import PhotoList from "./components/PhotoList";
+import NotFound from "./components/NotFound";
 import apiKey from "./config";
 
 const App = () => {
@@ -39,22 +40,23 @@ const App = () => {
 
   const handleQueryChange = (searchText) => {
     setQuery(searchText);
-    fetchData(query);
   };
 
   return (
     <div className="container">
       <SearchForm changeQuery={handleQueryChange} />
-      <Nav />
+      <Nav onClick={fetchData} />
       {loading ? (
         <p>Loading...</p>
       ) : (
         <Routes>
-          <Route path="/" element={<Navigate to="/cats" />} />
+          <Route path="/" element={<Navigate replace to="/cats" />} />
           <Route path="cats" element={<PhotoList data={photos} />} />
           <Route path="dogs" element={<PhotoList data={photos} />} />
           <Route path="computers" element={<PhotoList data={photos} />} />
           <Route path="/search/:query" element={<PhotoList data={photos} />} />
+          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<Navigate replace to="/404" />} /> */}
         </Routes>
       )}
     </div>
