@@ -5,7 +5,7 @@ import "./App.css";
 import SearchForm from "./components/SearchForm";
 import Nav from "./components/Nav";
 import PhotoList from "./components/PhotoList";
-import NotFound from "./components/NotFound";
+import Error from "./components/Error";
 import apiKey from "./config";
 
 const App = () => {
@@ -91,8 +91,8 @@ const App = () => {
               />
             }
           />
-          <Route path="*" element={<NotFound />} />
-          {/* <Route path="*" element={<Navigate replace to="/404" />} /> */}
+          <Route path="*" element={<Navigate to="/404" />} />
+          <Route path="/404" element={<Error />} />
         </Routes>
       )}
     </div>
