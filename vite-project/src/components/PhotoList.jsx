@@ -14,9 +14,9 @@ const PhotoList = ({ data, currentQuery, handleQueryChange }) => {
         handleQueryChange(query);
       }
     } else {
-      const pathname = location.pathname.slice(1);
-      if (pathname !== currentQuery) {
-        handleQueryChange(pathname);
+      const currentPathname = location.pathname.slice(1);
+      if (currentPathname !== currentQuery) {
+        handleQueryChange(currentPathname);
       }
     }
   }, [query, currentQuery, handleQueryChange, location]);
