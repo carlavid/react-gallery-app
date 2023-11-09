@@ -51,10 +51,46 @@ const App = () => {
       ) : (
         <Routes>
           <Route path="/" element={<Navigate replace to="/cats" />} />
-          <Route path="cats" element={<PhotoList data={photos} />} />
-          <Route path="dogs" element={<PhotoList data={photos} />} />
-          <Route path="computers" element={<PhotoList data={photos} />} />
-          <Route path="/search/:query" element={<PhotoList data={photos} />} />
+          <Route
+            path="cats"
+            element={
+              <PhotoList
+                currentQuery={query}
+                handleQueryChange={handleQueryChange}
+                data={photos}
+              />
+            }
+          />
+          <Route
+            path="dogs"
+            element={
+              <PhotoList
+                currentQuery={query}
+                handleQueryChange={handleQueryChange}
+                data={photos}
+              />
+            }
+          />
+          <Route
+            path="computers"
+            element={
+              <PhotoList
+                currentQuery={query}
+                handleQueryChange={handleQueryChange}
+                data={photos}
+              />
+            }
+          />
+          <Route
+            path="/search/:query"
+            element={
+              <PhotoList
+                currentQuery={query}
+                handleQueryChange={handleQueryChange}
+                data={photos}
+              />
+            }
+          />
           <Route path="*" element={<NotFound />} />
           {/* <Route path="*" element={<Navigate replace to="/404" />} /> */}
         </Routes>
