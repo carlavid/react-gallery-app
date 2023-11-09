@@ -7,8 +7,18 @@ const SearchForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.changeQuery(searchText.current.value); // changing query state
-    navigate(`/search/${searchText.current.value}`);
+    let currentSearch = searchText.current.value.toLowerCase();
+
+    if (
+      currentSearch === "cats" ||
+      currentSearch === "dogs" ||
+      currentSearch === "computers"
+    ) {
+      navigate(`/${currentSearch}`);
+    } else {
+      navigate(`/search/${currentSearch}`);
+    }
+    props.changeQuery(currentSearch); // changing query state
     e.currentTarget.reset();
   };
 
