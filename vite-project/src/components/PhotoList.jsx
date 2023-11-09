@@ -7,6 +7,7 @@ const PhotoList = ({ data, currentQuery, handleQueryChange }) => {
   const location = useLocation();
   const { query } = useParams();
 
+  // listen for URL changes
   useEffect(() => {
     if (query) {
       if (query !== currentQuery) {

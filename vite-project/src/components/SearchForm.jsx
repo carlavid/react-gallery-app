@@ -9,6 +9,7 @@ const SearchForm = (props) => {
     e.preventDefault();
     let currentSearch = searchText.current.value.toLowerCase();
 
+    // check if query matches one of the static routes
     if (
       currentSearch === "cats" ||
       currentSearch === "dogs" ||
@@ -18,7 +19,7 @@ const SearchForm = (props) => {
     } else {
       navigate(`/search/${currentSearch}`);
     }
-    props.changeQuery(currentSearch); // changing query state
+    props.changeQuery(currentSearch);
     e.currentTarget.reset();
   };
 
